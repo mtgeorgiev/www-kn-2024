@@ -3,9 +3,51 @@
 .red-text {
     color: red;
     font-weight: bold;
+    font: italic bold 16px/30px Verdana, Consolas, sans-serif;
 }
 
 #el1 {
     color: blue;
 }
 
+.red-text:hover {
+    color: green;
+}
+
+.list-element {
+    height: 30px;
+    line-height: 30px;
+}
+
+.list-element:nth-child(2n+1) {
+    background-color:blueviolet;
+    color: white;
+}
+
+.list-element:hover {
+    background-color:rgb(216 205 226);
+    color: rgb(0, 0, 0);
+}
+
+#male-label {
+    color: #00ff08;
+}
+
+.red-text.labels {
+    color: cyan;
+}
+
+.labels.red-text {
+    color: black;
+}
+
+#first-test-element {
+    background-color: #e2462c;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+.relative {
+    position: relative;
+}
