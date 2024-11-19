@@ -8,22 +8,14 @@
 	  <script src="./my-script.js" defer></script>
 	</head>
 	<body>
-		<form method="GET">
-
-			<label for="gender-m" class="red-text labels" id="male-label">
-				Male
-			</label>
-			<input type="radio" name="gender" value="M" id="gender-m">
-			<label><input type="radio" name="gender" value="F"> Female </label>
-			<select name="select-example">
-				<optgroup label="Young">
-				  <option value="1"> Kid (0-12) </option>
-				  <option value="2" selected> Teen (13-19) </option>
-				</optgroup>
-				<option value="3"> Adult (20+) </option>
-			</select>
-			<input type="submit" />
+		<form id="register-form" class="hidden">
+			<input type="text" name="username" placeholder="Потребителско име" required/>
+			<input type="password" name="password" placeholder="Парола" required/>
+			<input type="password" name="confirm-password" placeholder="Потвърди парола" required/>
+			<input type="submit" value="Регистрирай се!"/>
+			<input type="button" value="Откажи" id="hide-register-form"/>
 		</form>
+		<button id="show-register-form">Регистрирай се</button>
 		<misho-tag class="red-text">
 			asdasdasdsad as
 		</misho-tag>
