@@ -39,6 +39,15 @@ const displayRegisterError = (message) => {
   // errorElement.classList.remove("hidden");
 };
 
+const displaySuccessMessage = (message) => {
+  let successElement = document.createElement('div');
+  successElement.innerText = message;
+  successElement.setAttribute('id', 'register-success');
+  successElement.classList.add('success');
+
+  document.getElementById('register-form').appendChild(successElement);
+}
+
 document.getElementById('show-register-form')
         .addEventListener('click', showRegisterForm);
 
@@ -50,6 +59,10 @@ document.getElementById('register-form')
           event.preventDefault();
 
           for (let element of event.target.getElementsByClassName('errors')) {
+            element.parentElement.removeChild(element);
+          }
+
+          for (let element of event.target.getElementsByClassName('success')) {
             element.parentElement.removeChild(element);
           }
 
@@ -67,6 +80,17 @@ document.getElementById('register-form')
             fetch('./register.php', {
               method: 'POST',
               body: body,
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                 displaySuccessMessage("You have successfully registered");
+                 setTimeout(() => {
+                   hideRegisterForm();
+                 }, 3500);
+              } else {
+                displayRegisterError(data.error);
+              }
             });
           }
         });
