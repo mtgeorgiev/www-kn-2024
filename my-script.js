@@ -83,7 +83,7 @@ document.getElementById('register-form')
             })
             .then(response => response.json())
             .then(data => {
-              if (data.success) {
+              if (!data.error) {
                  displaySuccessMessage("You have successfully registered");
                  setTimeout(() => {
                    hideRegisterForm();

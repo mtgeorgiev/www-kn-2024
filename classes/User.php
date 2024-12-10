@@ -14,6 +14,10 @@ class User {
         return $this->username;
     }
 
+    public function getPassword() {
+        return $this->password;
+    }
+
     public function validate() {
 
         if (!$this->username) {

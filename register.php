@@ -8,7 +8,14 @@ $password = isset($_POST['password']) ? $_POST['password'] : null;
 $user = new User($username, $password);
 $user->validate();
 
-// implement the user registration here
+$connection  = (new Db())->getConnection();
+$insertStatement = $connection->prepare("INSERT INTO `users` (`username`, `password`) VALUES (:username, :password)");
+
+$insertStatement->execute([
+    'username' => $user->getUsername(),
+    'password' =>$user->getPassword(),
+]);
+
 
 
 echo json_encode([
