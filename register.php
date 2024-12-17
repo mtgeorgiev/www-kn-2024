@@ -11,13 +11,16 @@ $user->validate();
 $connection  = (new Db())->getConnection();
 $insertStatement = $connection->prepare("INSERT INTO `users` (`username`, `password`) VALUES (:username, :password)");
 
+$hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+
 $insertStatement->execute([
     'username' => $user->getUsername(),
-    'password' =>$user->getPassword(),
+    'password' => $hashedPassword,
 ]);
 
-
+$id = $connection->lastInsertId();
 
 echo json_encode([
-    'success' => true
+    'success' => true,
+    'id' => $id,
 ]);
