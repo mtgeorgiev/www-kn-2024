@@ -95,23 +95,13 @@ document.getElementById('register-form')
           }
         });
 
-const logout = () => {
-  fetch('./session.php', {
-        method: 'DELETE'
-    }).then(response => response.json())
-      .then(r => {
-        console.log('reloading the page')
-        document.location.reload();
-      });
-}
-
 const showContentVisibleForLoggedUsers = () => {
   for (let visibleElement of document.getElementsByClassName('visible-for-logged-user')) {
     visibleElement.classList.remove('hidden');
   }
 }
 
-document.getElementById('logout-button').addEventListener('click', logout);
+document.getElementById('logout-button').addEventListener('click', userActions.logout);
 
 const checkLoginStatus = () => {
    fetch('./session.php')
@@ -125,24 +115,10 @@ const checkLoginStatus = () => {
     });
 }
 
-const login = () => {
-  let formData = new FormData(document.getElementById('login-form'));
-
-  fetch('./session.php',
-        {
-            method: 'POST',
-            body: formData
-        }).then(response => response.json())
-          .then(response => {
-            if (response.username) {
-              showContentVisibleForLoggedUsers();
-            }
-          });
-}
 
 document.getElementById('login-form').addEventListener('submit', event => {
   event.preventDefault();
-  login();
+  userActions.login();
 });
 
 checkLoginStatus();
